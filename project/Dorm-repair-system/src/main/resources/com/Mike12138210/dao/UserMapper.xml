@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Mike12138210.dao.UserMapper">
+
+    <!-- int insertUser(User user); -->
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (account, password, role, building, room)
+        VALUES (#{account}, #{password}, #{role}, #{building}, #{room})
+    </insert>
+
+    <!-- 定义结果映射 -->
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="role" column="role"/>
+        <result property="building" column="building"/>
+        <result property="room" column="room"/>
+    </resultMap>
+
+    <!-- 根据账号查询用户 -->
+    <select id="selectByAccount" resultMap="userResultMap" parameterType="string">
+        SELECT * FROM user WHERE account = #{account}
+    </select>
+
+    <!-- void updateUser(User user); -->
+    <update id="updateUser" parameterType="User">
+        UPDATE user
+        SET password = #{password},
+            building = #{building},
+            room = #{room}
+        WHERE id = #{id}
+    </update>
+
+    <!-- void deleteUser(); -->
+    <delete id="deleteUser">
+        DELETE * FROM user WHERE account = #{account}
+    </delete>
+
+</mapper>
