@@ -1,0 +1,10 @@
+# 前端 node_modules
+vue_code/node_modules/
+vue_code/dist/
+
+# 上传的图片（这些文件属于测试数据，不应进入仓库）
+uploads/
+
+# 其他
+.DS_Store
+*.log
